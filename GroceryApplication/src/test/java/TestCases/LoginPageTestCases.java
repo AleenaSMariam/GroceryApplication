@@ -36,11 +36,12 @@ public class LoginPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
 	}
 
-	@Test
-	public void verifySignInWithInvalidCredentials() {
+	@Test(dataProvider="dataProvider",dataProviderClass=DataProviderLoginPageTest.class)
+
+	public void verifySignInWithInvalidCredentials(String user, String paswd) {
 		lp = new LoginPage(driver);
-		lp.enterUsername("Aleena");
-		lp.enterPassword("12345");
+		lp.enterUsername(user);
+		lp.enterPassword(paswd);
 		lp.clickSignIn();
 		String actualresult = lp.alertMessageForInvalidUsernamAndPassword();
 		String expectedresult = "×\n" + "Alert!\n" + "Invalid Username/Password";
@@ -62,10 +63,10 @@ public class LoginPageTestCases extends BaseClass {
 		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
 		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
-		String actualresult = lp.urlOfThePageAfterSignIn();
-		String expectedresult = "https://groceryapp.uniqassosiates.com/admin";
+		String actualresult = lp.adminOptionInHomePage();
+		String expectedresult = "Admin";
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
-		//add assertion - username
+
 	}
 
 }

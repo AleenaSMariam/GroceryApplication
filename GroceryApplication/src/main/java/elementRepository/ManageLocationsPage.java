@@ -79,12 +79,12 @@ public class ManageLocationsPage {
 		return gu.getElementText(newLocationCreated);
 	}
 
-	public String getLocator() {
+	public String getLocatorToFindValueOfLocation() {
 		int index = gu.getLocatorValueFromTable(locations, "Kerala");
-		String locator = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + (index + 1)
-				+ "]//td[3]";
-	   
-		return locator;
+		String locator = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + (index + 1)+ "]//td[3]";
+		WebElement location = driver.findElement(By.xpath(locator));
+		return gu.getElementText(location);
+
 	}
 
 }

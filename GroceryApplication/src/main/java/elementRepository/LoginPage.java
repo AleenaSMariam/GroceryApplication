@@ -40,6 +40,9 @@ public class LoginPage {
 	@FindBy(xpath = "//button[@class='btn btn-dark btn-block']")
 	WebElement signinButton;
 
+	@FindBy(xpath = "//a[contains(text(),'Admin')]")
+	WebElement adminButton;
+
 	public void enterUsername(String usrname) {
 		username.sendKeys(usrname);
 	}
@@ -69,8 +72,7 @@ public class LoginPage {
 		return gu.getColor(signInButton, value);
 	}
 
-	public String urlOfThePageAfterSignIn() {
-		return gu.getURLofPage(driver);
+	public String adminOptionInHomePage() {
+		return gu.getElementText(adminButton);
 	}
-
 }

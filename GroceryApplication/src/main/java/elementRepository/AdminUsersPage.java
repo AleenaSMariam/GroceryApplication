@@ -6,11 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.GeneralUtilities;
+import utilities.RandomUtility;
 
 public class AdminUsersPage {
 
 	WebDriver driver;
 	GeneralUtilities gu = new GeneralUtilities();
+	RandomUtility rg= new RandomUtility();
 
 	public AdminUsersPage(WebDriver driver) {
 		this.driver = driver;
@@ -88,7 +90,8 @@ public class AdminUsersPage {
 	}
 
 	public void enterNewUsername(String newName) {
-		adminUsername.sendKeys(newName);
+		String randomString=rg.randomPassword();
+		adminUsername.sendKeys(newName+randomString);
 	}
 
 	public void enterNewPassword(String newPswd) {

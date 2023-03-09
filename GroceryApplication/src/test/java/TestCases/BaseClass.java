@@ -28,16 +28,16 @@ public class BaseClass {
 
 	WebDriver driver;
 
-	@BeforeMethod (alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void beforeMethod(String browser) {        
+	public void beforeMethod(String browser) {            
 		if (browser.equals("Chrome")) {
 		driver = new ChromeDriver();
 		} 
 		else if (browser.equals("Firefox")) {
 		driver = new FirefoxDriver();
 		}
-        driver=new ChromeDriver();
+        //driver=new ChromeDriver();
 		driver.get("https://groceryapp.uniqassosiates.com/admin/login"); 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));

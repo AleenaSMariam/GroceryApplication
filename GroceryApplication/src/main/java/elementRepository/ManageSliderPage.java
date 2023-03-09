@@ -1,18 +1,22 @@
 package elementRepository;
 
 import java.awt.AWTException;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.ExplicitWait;
 import utilities.GeneralUtilities;
 
 public class ManageSliderPage {
 
 	WebDriver driver;
 	GeneralUtilities gu = new GeneralUtilities();
+	ExplicitWait ew=new ExplicitWait();
 
 	public ManageSliderPage(WebDriver driver) {
 		this.driver = driver;
@@ -30,10 +34,9 @@ public class ManageSliderPage {
 
 	@FindBy(id = "link")
 	WebElement enterLinkOption;
-	
+
 	@FindBy(xpath = "//button[@name='create']")
 	WebElement enterSaveButton;
-	
 
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	WebElement uploadSuccesfullMessage;
@@ -47,18 +50,21 @@ public class ManageSliderPage {
 	}
 
 	public void uploadImageOption() throws AWTException {
-		gu.uploadFiles(driver, uploadImageOption, System.getProperty("user.dir")+"//src//main//resources//ManagePageImage.png");
+		gu.uploadFiles(driver, uploadImageOption,
+				System.getProperty("user.dir") + "//src//main//resources//ManagePageImage.png");
 	}
 
 	public void enterLink(String lnk) {
 		enterLinkOption.sendKeys(lnk);
 	}
+
 	public void selectSaveButton() {
-		enterSaveButton.click();
+		ew.waitForElementToBeClickable(driver, enterSaveButton);
 	}
 
 	public String alertSuccesfullMessage() {
 		return gu.getElementText(uploadSuccesfullMessage);
 	}
+
 
 }

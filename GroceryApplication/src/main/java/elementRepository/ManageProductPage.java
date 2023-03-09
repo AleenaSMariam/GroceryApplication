@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.ExplicitWait;
 import utilities.GeneralUtilities;
 
 public class ManageProductPage {
 	WebDriver driver;
 	GeneralUtilities gu = new GeneralUtilities();
+	ExplicitWait ew= new ExplicitWait();
 
 	public ManageProductPage(WebDriver driver) {
 		this.driver = driver;
@@ -34,6 +36,21 @@ public class ManageProductPage {
 	@FindBy(xpath = "//input[@type='checkbox']")
 	WebElement unlimitedStockCheckBox;
 
+	@FindBy(id = "grp_id")
+	WebElement groupDropDown;
+
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary']")
+	WebElement searchButton;
+
+	@FindBy(xpath = "//input[@name='cd']")
+	WebElement productCode;
+
+	@FindBy(xpath = "//center[contains(.,'......RESULT NOT FOUND.....')]")
+	WebElement alertmessage;
+
+	@FindBy(xpath = "//button[@class='btn btn-danger btn-fix']")
+	WebElement searchCode;
+
 	public void enterManageProductPage() {
 		clickManageProducts.click();
 	}
@@ -44,6 +61,10 @@ public class ManageProductPage {
 
 	public String dropdownValueOfType(int value) {
 		return gu.getselectValueFromDropDown(weightUnitDropDown, value);
+	}
+
+	public String dropdownvalueofGroup(int index) {
+		return gu.getselectValueFromDropDown(groupDropDown, index);
 	}
 
 	public void clickProductTypeRadioButton() {
@@ -64,6 +85,22 @@ public class ManageProductPage {
 
 	public boolean ifunlimitedStockCheckBoxIsSelected() {
 		return gu.isCheckboxSelected(unlimitedStockCheckBox);
+	}
+
+	public void clickSearchButton() {
+		searchButton.click();
+	}
+
+	public void enterProductCode(String code) {
+		productCode.sendKeys(code);
+	}
+
+	public void clickSearchCodeButton() {
+		searchCode.click();
+	}
+
+	public String alertMessageAfterInvalidProductCodeIsEntered() {
+		return gu.getElementText(alertmessage);
 	}
 
 }

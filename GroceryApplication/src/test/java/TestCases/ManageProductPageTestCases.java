@@ -1,5 +1,7 @@
 package TestCases;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -7,17 +9,18 @@ import Constant.Constant;
 import elementRepository.LoginPage;
 import elementRepository.ManageProductPage;
 import elementRepository.PushNotificationsPage;
+import utilities.ExcelRead;
 
 public class ManageProductPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManageProductPage mpp;
 
 	@Test
-	public void verifyDropDownValueOfWeightUnitInTheNewOption() {
+	public void verifyDropDownValueOfWeightUnitInTheNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mpp = new ManageProductPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mpp.enterManageProductPage();
 		mpp.clickNew();
@@ -28,11 +31,11 @@ public class ManageProductPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyRadioButtonInProductTypeInTheNewOption() {
+	public void verifyRadioButtonInProductTypeInTheNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mpp = new ManageProductPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mpp.enterManageProductPage();
 		mpp.clickNew();
@@ -44,11 +47,11 @@ public class ManageProductPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyRadioButtonInPriceTypeInTheNewOption() {
+	public void verifyRadioButtonInPriceTypeInTheNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mpp = new ManageProductPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mpp.enterManageProductPage();
 		mpp.clickNew();
@@ -60,11 +63,11 @@ public class ManageProductPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyifunlimitedStockCheckBoxIsSelectedInNewOption() {
+	public void verifyifunlimitedStockCheckBoxIsSelectedInNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mpp = new ManageProductPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mpp.enterManageProductPage();
 		mpp.clickNew();
@@ -74,4 +77,34 @@ public class ManageProductPageTestCases extends BaseClass {
 
 	}
 
+	@Test
+	public void verifyDropdownValueOfGroupInNewOption() throws IOException {
+		lp = new LoginPage(driver);
+		mpp = new ManageProductPage(driver);
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.clickSignIn();
+		mpp.enterManageProductPage();
+		mpp.clickNew();
+		String actualresult = mpp.dropdownvalueofGroup(1);
+		String expectedresult = "discount";
+		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+	}
+
+	@Test
+	public void verifyIfAlertMessageIsShownAfterEnteringInvalidProductCodeIsSearched() throws IOException {
+		lp = new LoginPage(driver);
+		mpp = new ManageProductPage(driver);
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.clickSignIn();
+		mpp.enterManageProductPage();
+		mpp.clickSearchButton();
+		mpp.enterProductCode("1");
+		mpp.clickSearchCodeButton();
+		String actualresult = mpp.alertMessageAfterInvalidProductCodeIsEntered();
+		String expectedresult = ".........RESULT NOT FOUND.......";
+		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+
+	}
 }

@@ -2,58 +2,58 @@ package TestCases;
 
 import java.io.IOException;
 
+import org.openqa.selenium.support.Color;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import Constant.Constant;
 import elementRepository.LoginPage;
-import elementRepository.ManagePagesPage;
+import elementRepository.ManageOrdersPage;
 import utilities.ExcelRead;
 
-public class ManagePagesPageTestCases extends BaseClass {
+public class ManageOrdersPageTestCases extends BaseClass {
 	LoginPage lp;
-	ManagePagesPage mppg;
+	ManageOrdersPage mo;
 
 	@Test
-	public void verifyToolTipValueOfStyleOptionInDescriptonOfNewOption() throws IOException {
+	public void verifyTheMoneyAmountOfTheUserAccordingToTheOrderID() throws IOException {
 		lp = new LoginPage(driver);
-		mppg = new ManagePagesPage(driver);
+		mo = new ManageOrdersPage(driver);
 		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
 		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
-		mppg.enterManagePages();
-		mppg.clickNewButton();
-		String actualresult = mppg.toolTipValueOfStyleInDescription("aria-label");
-		String expectedresult = "Style";
+		mo.selectManageOrdersPage();
+		String actualresult = mo.getLocatorToFindValueOfAmount();
+		String expectedresult = "£ 280";
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
-
 	}
 
 	@Test
-	public void verifyToolTipValueOfVideoOptionInDescriptonOfNewOption() throws IOException {
+	public void verifyColourOfResetButton() throws IOException {
 		lp = new LoginPage(driver);
-		mppg = new ManagePagesPage(driver);
+		mo = new ManageOrdersPage(driver);
 		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
 		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
-		mppg.enterManagePages();
-		mppg.clickNewButton();
-		String actualresult = mppg.toolTipValueOfVideoInDescription("aria-label");
-		String expectedresult = "Video";
+		mo.selectManageOrdersPage();
+		String color = mo.colourOfResetButton("color");
+		String actualresult = Color.fromString(color).asHex();
+		String expectedresult = "#1f2d3d";
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
-
 	}
-	
+
 	@Test
-	public void verifyTheValueOfPagesAccordingToTheTitle() throws IOException {
+	public void verifyDropDownValueOfPaymentModeInSearchOption() throws IOException {
 		lp = new LoginPage(driver);
-		mppg = new ManagePagesPage(driver);
+		mo = new ManageOrdersPage(driver);
 		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
 		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
-		mppg.enterManagePages();
-		String actualresult = mppg.getLocatorToFindValueOfPage();
-		String expectedresult = "Page New";
+		mo.selectManageOrdersPage();
+		mo.clickSearchOption();
+		String actualresult = mo.paymentModeDropDownValue(2);
+		String expectedresult = "Bank";
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
-
 	}
+
 }

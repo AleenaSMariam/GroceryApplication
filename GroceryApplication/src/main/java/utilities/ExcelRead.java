@@ -15,7 +15,7 @@ package utilities;
 		
 		public static String readStringData(String sheet, int i, int j) throws IOException
 		{
-			f=new FileInputStream(System.getProperty("user.dir")+ "//src//main//resources//GroceryApp Credentials.xlsx");		//Fetching the file from the specified path
+			f=new FileInputStream(System.getProperty("user.dir")+ "//src//main//resources//ExcelRead//GroceryApp Credentials.xlsx");		//Fetching the file from the specified path
 			w=new XSSFWorkbook(f);		//Fetching the workbook from the file
 			s=w.getSheet(sheet);		//Fetching the sheet named Sheet1 from the workbook
 			Row r=s.getRow(i);		//Method to get the row
@@ -25,7 +25,7 @@ package utilities;
 		}
 		public static String readIntegerData(String sheet, int i, int j) throws IOException
 		{
-			f=new FileInputStream(System.getProperty("user.dir")+ "//src//main//resources//GroceryApp Credentials.xlsx");
+			f=new FileInputStream(System.getProperty("user.dir")+ "//src//main//resources//ExcelRead//GroceryApp Credentials.xlsx");
 			w=new XSSFWorkbook(f);
 			s=w.getSheet(sheet);
 			Row r=s.getRow(i);

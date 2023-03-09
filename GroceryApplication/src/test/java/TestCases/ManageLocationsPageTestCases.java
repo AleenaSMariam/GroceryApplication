@@ -21,9 +21,8 @@ public class ManageLocationsPageTestCases extends BaseClass {
 	public void verifyTheDropDownValueOfCountryFromNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
-		;
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
@@ -33,11 +32,11 @@ public class ManageLocationsPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyTheDropDownValueOfStaeFromNewOption() {
+	public void verifyTheDropDownValueOfStaeFromNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
@@ -47,11 +46,11 @@ public class ManageLocationsPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyIftMessageIsShownWhenNewLocationIsCreated() {
+	public void verifyIftMessageIsShownWhenNewLocationIsCreated() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
@@ -66,17 +65,15 @@ public class ManageLocationsPageTestCases extends BaseClass {
 	}
 
 	@Test
-	public void verifyTheStateOfTheUserAccordingToTheLocation() {
+	public void verifyTheStateOfTheUserAccordingToTheLocation() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
-		String locator = mlp.getLocator();
-		WebElement state = driver.findElement(By.xpath(locator));
-		String actualresult = state.getText();//change it
-		String expectedresult = "Cambridge";
+		String actualresult = mlp.getLocatorToFindValueOfLocation();
+		String expectedresult = "Birmingham";
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
 
 	}

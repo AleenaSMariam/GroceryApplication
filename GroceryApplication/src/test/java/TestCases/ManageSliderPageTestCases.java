@@ -1,25 +1,26 @@
 package TestCases;
 
 import java.awt.AWTException;
+import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Constant.Constant;
 import elementRepository.LoginPage;
-import elementRepository.ManageProductPage;
 import elementRepository.ManageSliderPage;
+import utilities.ExcelRead;
 
 public class ManageSliderPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManageSliderPage msp;
 
 	@Test
-	public void verifyIfAlertMessageIsShownAfterAllTheDetailsAreAdded() throws AWTException {
+	public void verifyIfAlertMessageIsShownAfterAllTheDetailsAreAdded() throws AWTException, IOException {
 		lp = new LoginPage(driver);
 		msp = new ManageSliderPage(driver);
-		lp.enterUsername("admin");
-		lp.enterPassword("admin");
+		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
+		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
 		lp.clickSignIn();
 		msp.enterMobileSlide();
 		msp.selectNewButton();
@@ -31,4 +32,5 @@ public class ManageSliderPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
 
 	}
+
 }
