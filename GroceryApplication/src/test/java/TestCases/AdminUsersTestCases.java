@@ -13,53 +13,53 @@ public class AdminUsersTestCases extends BaseClass {
 	LoginPage lp;
 	AdminUsersPage aup;
 
-	@Test(groups = { "Critical" })
+	@Test(groups = "Smoke Testing" )
 	public void verifyDropdownValueOfUserTypeInSearch() throws IOException {
 		lp = new LoginPage(driver);
 		aup = new AdminUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		aup.selectAdminUsers();
 		aup.clickSearchButton();
-		String actualresult = aup.dropdownValueOfType(1);
-		String expectedresult = "Staff";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = aup.dropdownValueOfType(Constant.USERTYPEVALUE);
+		String expectedresult = Constant.USERTYPESELECTED;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyIfAlertMessageIsShownWhenInvalidTitleIsGiven() throws IOException {
 		lp = new LoginPage(driver);
 		aup = new AdminUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		aup.selectAdminUsers();
 		aup.clickSearchButton();
-		aup.adminUserName("qwertyu");
+		aup.adminUserName(Constant.INVALIDUSERNAME);
 		aup.clickSearchUsername();
 		String expectedresult = aup.verifyAlertMessage();
-		String actualresult = ".........RESULT NOT FOUND.......";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = Constant.ALERTMESSAGEFORINVALID;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 
-	@Test(groups = { "High" })
-	public void verifyIfAlertMessageIsShownWhenNewUserIsCreated() throws IOException {
+	@Test(groups = "Regression" )
+	public void verifyIfAlertMessageIsShownWhenNewUserIsCreated() throws IOException { 
 		lp = new LoginPage(driver);
 		aup = new AdminUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		aup.selectAdminUsers();
 		aup.clickNew();
-		aup.enterNewUsername("admin_01_02_03");
-		aup.enterNewPassword("abc");
-		aup.selectNewType(1);
+		aup.enterNewUsername(Constant.SAMPLE_USERNAME);
+		aup.enterNewPassword(Constant.SAMPLE_PASSWORD);
+		aup.selectNewType(Constant.USERTYPEVALUE);
 		aup.clickCreateButton();
 		String expectedresult = aup.newUserCreatedMessageShown();
-		String actualresult = "×\n" + "Alert!\n" + "User Created Successfully";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = Constant.ALERTMESSAGEFORCREATINGUSER;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 }

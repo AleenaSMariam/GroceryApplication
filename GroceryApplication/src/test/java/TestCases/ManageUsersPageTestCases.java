@@ -18,30 +18,30 @@ public class ManageUsersPageTestCases extends BaseClass {
 	public void verifyIfTheDropDownValueOfStatusCanBeSelectedFromSearchOption() throws IOException {
 		lp = new LoginPage(driver);
 		mu = new ManageUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mu.enterManageUsers();
 		mu.selectSearchButton();
-		String actualresult = mu.selectStatusValueFromDropDown(1);
-		String expectedresult = "Active";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mu.selectStatusValueFromDropDown(Constant.STATUS_VALUE);
+		String expectedresult = Constant.STATUS_OF_USER;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyIfAlertMessageIsShownWhenInvalidNameIsGiven() throws IOException {
 		lp = new LoginPage(driver);
 		mu = new ManageUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mu.enterManageUsers();
 		mu.selectSearchButton();
-		mu.selectNameOption("aleena123");
+		mu.selectNameOption(Constant.SAMPLE_USERNAME);
 		mu.selectSearchAfterEnterButton();
 		String actualresult = mu.alertMessageAfterInvalidNameEnter();
-		String expectedresult = ".........RESULT NOT FOUND.......";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult = Constant.ALERTMESSAGEFORINVALID;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 }

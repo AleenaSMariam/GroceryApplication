@@ -19,17 +19,17 @@ public class ManageSliderPageTestCases extends BaseClass {
 	public void verifyIfAlertMessageIsShownAfterAllTheDetailsAreAdded() throws AWTException, IOException {
 		lp = new LoginPage(driver);
 		msp = new ManageSliderPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		msp.enterMobileSlide();
 		msp.selectNewButton();
 		msp.uploadImageOption();
-		msp.enterLink("www.amazon.com");
+		msp.enterLink(Constant.LINK_OF_SLIDER);
 		msp.selectSaveButton();
 		String actualresult = msp.alertSuccesfullMessage();
-		String expectedresult = "�\n" + "Alert!\n" + "Slider Created Successfully";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult = Constant.ALERT_MESSAGE_FOR_CREATING_SLIDER;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 

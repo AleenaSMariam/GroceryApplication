@@ -3,6 +3,7 @@
 <parameter name="browser" value="Chrome"></parameter>
 <classes>
 <class name="TestCases.AdminUsersTestCases"></class>
+
 </classes>
 </test>
 <test name="FirefoxTest">

@@ -59,7 +59,7 @@ public class ManageSliderPage {
 	}
 
 	public void selectSaveButton() {
-		ew.waitForElementToBeClickable(driver, enterSaveButton);
+		enterSaveButton.click();
 	}
 
 	public String alertSuccesfullMessage() {

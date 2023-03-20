@@ -19,41 +19,41 @@ public class ManageOrdersPageTestCases extends BaseClass {
 	public void verifyTheMoneyAmountOfTheUserAccordingToTheOrderID() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
 		String actualresult = mo.getLocatorToFindValueOfAmount();
-		String expectedresult = "£ 280";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult = Constant.MONEY_AMOUNT;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyColourOfResetButton() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
-		String color = mo.colourOfResetButton("color");
+		String color = mo.colourOfResetButton(Constant.COLOUR);
 		String actualresult = Color.fromString(color).asHex();
-		String expectedresult = "#1f2d3d";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult = Constant.VALUE_OF_COLOR;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyDropDownValueOfPaymentModeInSearchOption() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
 		mo.clickSearchOption();
-		String actualresult = mo.paymentModeDropDownValue(2);
-		String expectedresult = "Bank";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mo.paymentModeDropDownValue(Constant.PAYMENT_VALUE);
+		String expectedresult = Constant.PAYMENT_MODE;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 }

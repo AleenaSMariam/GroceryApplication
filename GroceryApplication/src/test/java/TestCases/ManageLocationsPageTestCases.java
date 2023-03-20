@@ -21,60 +21,60 @@ public class ManageLocationsPageTestCases extends BaseClass {
 	public void verifyTheDropDownValueOfCountryFromNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
-		String actualresult = mlp.dropdownValueOfCountry(1);
-		String expectedresult = "United Kingdom";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mlp.dropdownValueOfCountry(Constant.COUNTRY_VALUE);
+		String expectedresult = Constant.COUNTRY_NAME;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyTheDropDownValueOfStaeFromNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
-		String actualresult = mlp.dropdownValueOfStateOption(8);
-		String expectedresult = "Birmingham";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mlp.dropdownValueOfStateOption(Constant.STATE_VALUE);
+		String expectedresult = Constant.STATE_NAME;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyIftMessageIsShownWhenNewLocationIsCreated() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		mlp.enterNewButton();
-		mlp.dropdownValueOfCountry(1);
-		mlp.dropdownValueOfStateOption(8);
-		mlp.enterLocationvalue("Kerala");
-		mlp.enterDeliveryChargevalue("100");
+		mlp.dropdownValueOfCountry(Constant.COUNTRY_VALUE);
+		mlp.dropdownValueOfStateOption(Constant.STATE_VALUE);
+		mlp.enterLocationvalue(Constant.SAMPLE_LOCATION);
+		mlp.enterDeliveryChargevalue(Constant.SAMPLE_DELIVERYCHARGE);
 		mlp.enterSaveButton();
 		String actualresult = mlp.newLocationCreatedMessageShown();
-		String expectedresult = "×\n" + "Alert!\n" + "Location Created Successfully";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult =Constant.ALERT_MESSAGE_FOR_CREATING_LOCATION;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
 	@Test
 	public void verifyTheStateOfTheUserAccordingToTheLocation() throws IOException {
 		lp = new LoginPage(driver);
 		mlp = new ManageLocationsPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mlp.selectManageLocationsPage();
 		String actualresult = mlp.getLocatorToFindValueOfLocation();
-		String expectedresult = "Birmingham";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult =Constant.VALUE_OF_LOCATION;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 

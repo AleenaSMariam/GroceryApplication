@@ -39,8 +39,8 @@ public class ExtentReportUtilities implements ITestListener {
 		reports.attachReporter(sparkReporter);
 
 		// System details
-		reports.setSystemInfo("PC Name", "ALViNs");
-		reports.setSystemInfo("OS", "Windows 10");
+		reports.setSystemInfo("PC Name", "ALEENA");
+		reports.setSystemInfo("OS", "macOS Version 11.6");
 		sparkReporter.config().setDocumentTitle("Extent Report Sample");
 		sparkReporter.config().setReportName("Report Summary");
 		sparkReporter.config().setTheme(Theme.DARK);
@@ -60,6 +60,7 @@ public class ExtentReportUtilities implements ITestListener {
 
 	public void onTestSuccess(ITestResult result) {
 		test = reports.createTest(result.getName());
+		test.assignCategory(result.getMethod().getGroups());
 		test.log(Status.PASS,
 				MarkupHelper.createLabel("Name of the Passed Test Case is : " + result.getName(), ExtentColor.GREEN));
 
@@ -67,6 +68,7 @@ public class ExtentReportUtilities implements ITestListener {
 
 	public void onTestFailure(ITestResult result) {
 		test = reports.createTest(result.getName());
+		test.assignCategory(result.getMethod().getGroups());
 		test.log(Status.FAIL,
 				MarkupHelper.createLabel("Name of the Failed Test Case is : " + result.getName(), ExtentColor.RED));
 
@@ -74,6 +76,7 @@ public class ExtentReportUtilities implements ITestListener {
 
 	public void onTestSkipped(ITestResult result) {
 		test = reports.createTest(result.getName());
+		test.assignCategory(result.getMethod().getGroups());
 		test.log(Status.SKIP,
 				MarkupHelper.createLabel("Name of the skipped test case is : " + result.getName(), ExtentColor.YELLOW));
 

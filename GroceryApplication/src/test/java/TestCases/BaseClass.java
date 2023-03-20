@@ -1,6 +1,8 @@
 package TestCases;
 
 import org.testng.annotations.Test;
+
+import Constant.Constant;
 import utilities.ScreenShotUtility;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -10,6 +12,7 @@ import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -21,8 +24,7 @@ public class BaseClass {
 
 	public void testBasic() throws IOException {
 		prop = new Properties();
-		FileInputStream ip = new FileInputStream(
-				"/Users/jeswingeorge/eclipse-workspace/GroceryApplication/src/main/resources/Config.properties");
+		FileInputStream ip = new FileInputStream(System.getProperty("user.dir")+(Constant.CONFIG_PATH));
 		prop.load(ip);
 	}
 
@@ -30,20 +32,22 @@ public class BaseClass {
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void beforeMethod(String browser) {            
-		if (browser.equals("Chrome")) {
-		driver = new ChromeDriver();
+	public void beforeMethod(String browser) throws IOException {  
+		testBasic();
+		if (browser.equals(Constant.CHROME_BROWSER)) {
+			ChromeOptions option = new ChromeOptions();
+            option.addArguments("--remote-allow-origins=*");
+            driver = new ChromeDriver(option);
 		} 
-		else if (browser.equals("Firefox")) {
+		else if (browser.equals(Constant.FIREFOX_BROWSER)) {
 		driver = new FirefoxDriver();
 		}
-        //driver=new ChromeDriver();
-		driver.get("https://groceryapp.uniqassosiates.com/admin/login"); 
+		driver.get(prop.getProperty("BaseURL"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
 	}
 
-	@AfterMethod (alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void afterMethod(ITestResult itestResult) throws IOException {
 		if (itestResult.getStatus() == ITestResult.FAILURE) {
 			ss = new ScreenShotUtility();

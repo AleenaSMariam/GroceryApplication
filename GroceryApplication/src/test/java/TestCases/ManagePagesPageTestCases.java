@@ -17,14 +17,14 @@ public class ManagePagesPageTestCases extends BaseClass {
 	public void verifyToolTipValueOfStyleOptionInDescriptonOfNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		mppg.clickNewButton();
-		String actualresult = mppg.toolTipValueOfStyleInDescription("aria-label");
-		String expectedresult = "Style";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mppg.toolTipValueOfStyleInDescription(Constant.ATTRIBUTE_VALUE);
+		String expectedresult = Constant.TOOLTIP_VALUE1;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 
@@ -32,14 +32,14 @@ public class ManagePagesPageTestCases extends BaseClass {
 	public void verifyToolTipValueOfVideoOptionInDescriptonOfNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		mppg.clickNewButton();
-		String actualresult = mppg.toolTipValueOfVideoInDescription("aria-label");
-		String expectedresult = "Video";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String actualresult = mppg.toolTipValueOfVideoInDescription(Constant.ATTRIBUTE_VALUE);
+		String expectedresult = Constant.TOOLTIP_VALUE2;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 	
@@ -47,13 +47,13 @@ public class ManagePagesPageTestCases extends BaseClass {
 	public void verifyTheValueOfPagesAccordingToTheTitle() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData("Sheet1", 1, 0));
-		lp.enterPassword(ExcelRead.readStringData("Sheet1", 1, 1));
+		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		String actualresult = mppg.getLocatorToFindValueOfPage();
-		String expectedresult = "Page New";
-		Assert.assertEquals(actualresult, expectedresult, Constant.COMMONERRORMESSAGEMESSAGE);
+		String expectedresult = Constant.VALUE_OF_PAGE;
+		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
 }
