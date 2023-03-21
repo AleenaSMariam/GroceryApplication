@@ -15,12 +15,14 @@ public class ManageOrdersPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManageOrdersPage mo;
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyTheMoneyAmountOfTheUserAccordingToTheOrderID() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
 		String actualresult = mo.getLocatorToFindValueOfAmount();
@@ -28,12 +30,14 @@ public class ManageOrdersPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyColourOfResetButton() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
 		String color = mo.colourOfResetButton(Constant.COLOUR);
@@ -42,12 +46,14 @@ public class ManageOrdersPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test
+	@Test(groups = "Sanity Testing")
 	public void verifyDropDownValueOfPaymentModeInSearchOption() throws IOException {
 		lp = new LoginPage(driver);
 		mo = new ManageOrdersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mo.selectManageOrdersPage();
 		mo.clickSearchOption();

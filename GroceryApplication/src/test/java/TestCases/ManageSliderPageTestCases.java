@@ -15,12 +15,14 @@ public class ManageSliderPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManageSliderPage msp;
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyIfAlertMessageIsShownAfterAllTheDetailsAreAdded() throws AWTException, IOException {
 		lp = new LoginPage(driver);
 		msp = new ManageSliderPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		msp.enterMobileSlide();
 		msp.selectNewButton();

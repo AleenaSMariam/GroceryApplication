@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+
 public class ExcelRead {
 	
 	public static FileInputStream f;
@@ -20,7 +21,7 @@ public class ExcelRead {
 	
 	public static void testBasic() throws IOException {
 		prop=new Properties();		
-		FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+"//src//main//resources//Config.properties");	
+		FileInputStream ip=new FileInputStream(System.getProperty("user.dir")+ "//src//main//resources//Config.properties");	
 		prop.load(ip);	
 	}
 	
@@ -28,11 +29,11 @@ public class ExcelRead {
 	{
 		testBasic();
 		f=new FileInputStream(System.getProperty("user.dir")+ excel);		//Fetching the file from the specified path
-		w=new XSSFWorkbook(f);		//Fetching the workbook from the file
-		s=w.getSheet(sheet);		//Fetching the sheet named Sheet1 from the workbook
-		Row r=s.getRow(i);		//Method to get the row
-		Cell c=r.getCell(j);	//Method to get the column
-		return c.getStringCellValue();		//Method to fetch the String value from the column
+		w=new XSSFWorkbook(f);		                                        //Fetching the workbook from the file
+		s=w.getSheet(sheet);		                                        //Fetching the sheet named Sheet1 from the workbook
+		Row r=s.getRow(i);		                                            //Method to get the row
+		Cell c=r.getCell(j);	                                            //Method to get the column
+		return c.getStringCellValue();		                                //Method to fetch the String value from the column
 		
 	}
 	
@@ -43,8 +44,8 @@ public class ExcelRead {
 		s=w.getSheet(sheet);
 		Row r=s.getRow(i);
 		Cell c=r.getCell(j);
-		int a=(int) c.getNumericCellValue();		//To get the numeric value from the column
-		return String.valueOf(a);		//We are converting the integer value to string format to return to the main method
+		int a=(int) c.getNumericCellValue();		                           //To get the numeric value from the column
+		return String.valueOf(a);		                                       //We are converting the integer value to string format to return to the main method
 	}
 
 }

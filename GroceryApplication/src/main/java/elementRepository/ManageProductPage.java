@@ -96,7 +96,7 @@ public class ManageProductPage {
 	}
 
 	public void clickSearchCodeButton() {
-		searchCode.click();
+		searchButton.click(); 
 	}
 
 	public String alertMessageAfterInvalidProductCodeIsEntered() {

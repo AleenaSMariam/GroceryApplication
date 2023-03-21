@@ -8,11 +8,15 @@
 <run>
 <include name="Regression Testing"></include>
 <include name="Smoke Testing"></include>
-<include name="Sanity Testing"></include>
+<include name="Sanity Testing"></include> 
 </run>
 </groups>
 <classes>
 <class name="TestCases.AdminUsersTestCases"></class>
+<class name="TestCases.AdminUsersTestCases" />
+<class name="TestCases.HomePageTestCases" />
+<class name="TestCases.LoginPageTestCases" />
+<class name="TestCases.ManageLocationsPageTestCases" />
 </classes>
 </test>
 </suite>

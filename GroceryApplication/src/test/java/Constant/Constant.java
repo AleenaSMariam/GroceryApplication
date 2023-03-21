@@ -36,7 +36,7 @@ public class Constant {
 	public static final String ATTRIBUTE_VALUE="aria-label";
 	public static final String TOOLTIP_VALUE1="Style";
 	public static final String TOOLTIP_VALUE2= "Video";
-	public static final String VALUE_OF_PAGE="NewPage150";
+	public static final String VALUE_OF_PAGE="TestSVJBQ763";
 	public static final String PAGE_CODE="1";
 	public static final int WEIGHT_VALUE=1;
 	public static final String WEIGHT_TYPE= "g";
@@ -53,9 +53,9 @@ public class Constant {
 	public static final String EXTENT_REPORT_OS_VERSION="macOS Big Sur Version 11.6 ";
 	public static final String EXTENT_REPORT_DOCUMENT_TITLE="Extent Report Sample";
 	public static final String EXTENT_REPORT_NAME="Report Summary";
-	public static final String EXCEL_SHEET="Sheet1";
-	public static final int ROW_NUM=1;
-	public static final int COL_NUM=0;
+	public static final String ALERT_MESSAGE_INVALID_CREDENTIALS= "×\n" + "Alert!\n" + "Invalid Username/Password";
+	public static final String DROPDOWN_VALUE_GROUP= "Select";
+	public static final int GROUP_VALUE=0;
 	
 
 	

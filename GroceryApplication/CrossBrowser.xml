@@ -3,13 +3,19 @@
 <parameter name="browser" value="Chrome"></parameter>
 <classes>
 <class name="TestCases.AdminUsersTestCases"></class>
-
+<class name="TestCases.HomePageTestCases" />
+<class name="TestCases.LoginPageTestCases" />
+<class name="TestCases.ManageLocationsPageTestCases" />
 </classes>
 </test>
+
 <test name="FirefoxTest">
 <parameter name="browser" value="Firefox"></parameter>
 <classes>
 <class name="TestCases.AdminUsersTestCases"></class> 
+<class name="TestCases.HomePageTestCases" />
+<class name="TestCases.LoginPageTestCases" />
+<class name="TestCases.ManageLocationsPageTestCases" />
 </classes>
 </test>
 </suite>

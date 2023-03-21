@@ -1,4 +1,4 @@
- package TestCases;
+package TestCases;
 
 import org.testng.annotations.Test;
 
@@ -21,7 +21,7 @@ public class LoginPageTestCases extends BaseClass {
 
 	LoginPage lp;
 
-	@Test (groups = "Smoke Testing")
+	@Test(groups = "Smoke Testing")
 	public void verifyTextOfTheSignInButton() {
 		lp = new LoginPage(driver);
 		String actualresult = lp.verifySignIn();
@@ -29,7 +29,7 @@ public class LoginPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test (groups = "Smoke Testing")
+	@Test(groups = "Smoke Testing")
 	public void verifyIfRememberMeCheckboxIsSelected() {
 		lp = new LoginPage(driver);
 		Boolean actualresult = lp.checkRememberMe();
@@ -37,7 +37,7 @@ public class LoginPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test(dataProvider="dataProvider",dataProviderClass = DataProviderUtility.class, groups = "Regression")
+	@Test(dataProvider = "dataProvider", dataProviderClass = DataProviderUtility.class, groups = "Regression Testing")
 	public void verifySignInWithInvalidCredentials(String user, String pwd) throws IOException {
 		testBasic();
 		lp = new LoginPage(driver);
@@ -45,11 +45,11 @@ public class LoginPageTestCases extends BaseClass {
 		lp.enterPassword(pwd);
 		lp.clickSignIn();
 		String actualresult = lp.alertMessageForInvalidUsernamAndPassword();
-		String expectedresult = "×\n" + "Alert!\n" + "Invalid Username/Password";
+		String expectedresult = Constant.ALERT_MESSAGE_INVALID_CREDENTIALS;
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test (groups = "Smoke Testing")
+	@Test(groups = "Smoke Testing")
 	public void verifyBackgroundColourOfSignInButton() {
 		lp = new LoginPage(driver);
 		String color = lp.backgroundColourOfSignInButton(Constant.BACKGROUND_COLOUR);
@@ -58,11 +58,13 @@ public class LoginPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test (groups = "Sanity Testing")
+	@Test(groups = "Sanity Testing")
 	public void verifyValidCredentials() throws IOException {
 		lp = new LoginPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		String actualresult = lp.adminOptionInHomePage();
 		String expectedresult = Constant.HOMEPAGE_TEXT;

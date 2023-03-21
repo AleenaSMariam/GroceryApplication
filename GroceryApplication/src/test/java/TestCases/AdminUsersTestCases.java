@@ -13,7 +13,7 @@ public class AdminUsersTestCases extends BaseClass {
 	LoginPage lp;
 	AdminUsersPage aup;
 
-	@Test(groups = "Smoke Testing" )
+	@Test(groups = "Regression Testing" )
 	public void verifyDropdownValueOfUserTypeInSearch() throws IOException {
 		lp = new LoginPage(driver);
 		aup = new AdminUsersPage(driver);
@@ -44,7 +44,7 @@ public class AdminUsersTestCases extends BaseClass {
 
 	}
 
-	@Test(groups = "Regression" )
+	@Test(groups = "Regression Testing" )
 	public void verifyIfAlertMessageIsShownWhenNewUserIsCreated() throws IOException { 
 		lp = new LoginPage(driver);
 		aup = new AdminUsersPage(driver);

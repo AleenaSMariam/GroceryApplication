@@ -1,0 +1,17 @@
+<suite name="MyTestSuite" parallel="tests" thread-count="2">
+<listeners>
+<listener class-name="utilities.ExtentReportUtilities" />
+</listeners>
+<test name="SmokeTest">
+<parameter name="browser" value="Chrome"></parameter>
+<classes>
+<class name="TestCases.ManagePagesPageTestCases"></class>
+</classes>
+</test>
+<test name="SanityTest">
+<parameter name="browser" value="Chrome"></parameter>
+<classes>
+<class name="TestCases.ManageSliderPageTestCases"></class>
+</classes>
+</test>
+</suite>

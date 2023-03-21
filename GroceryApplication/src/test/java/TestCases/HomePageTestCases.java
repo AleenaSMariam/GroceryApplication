@@ -20,8 +20,10 @@ public class HomePageTestCases extends BaseClass {
 	public void verifyLogOutButtonInAdminOption() throws IOException {
 		lp = new LoginPage(driver);
 		hp = new HomePage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		hp.clickAdminButton();
 		hp.clickLogoutButton();
@@ -35,14 +37,16 @@ public class HomePageTestCases extends BaseClass {
 	public void verifyTheBackgroundColourOfNewButton() throws IOException {
 		lp = new LoginPage(driver);
 		hp = new HomePage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		hp.clickManageExpenseDropDown();
 		hp.clickExpenseCategory();
 		String color = hp.bordercolourOfNewButton(Constant.BORDER_COLOUR);
 		String actualresult = Color.fromString(color).asHex();
-		String expectedresult =Constant.COLOUR_VALUE;
+		String expectedresult = Constant.COLOUR_VALUE;
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}

@@ -14,12 +14,14 @@ public class ManageUsersPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManageUsersPage mu;
 
-	@Test
+	@Test(groups = "Regression Testing")
 	public void verifyIfTheDropDownValueOfStatusCanBeSelectedFromSearchOption() throws IOException {
 		lp = new LoginPage(driver);
 		mu = new ManageUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mu.enterManageUsers();
 		mu.selectSearchButton();
@@ -28,12 +30,14 @@ public class ManageUsersPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyIfAlertMessageIsShownWhenInvalidNameIsGiven() throws IOException {
 		lp = new LoginPage(driver);
 		mu = new ManageUsersPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mu.enterManageUsers();
 		mu.selectSearchButton();

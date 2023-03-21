@@ -24,7 +24,7 @@ public class BaseClass {
 
 	public void testBasic() throws IOException {
 		prop = new Properties();
-		FileInputStream ip = new FileInputStream(System.getProperty("user.dir")+(Constant.CONFIG_PATH));
+		FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + (Constant.CONFIG_PATH));
 		prop.load(ip);
 	}
 
@@ -32,15 +32,14 @@ public class BaseClass {
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters("browser")
-	public void beforeMethod(String browser) throws IOException {  
+	public void beforeMethod(String browser) throws IOException {
 		testBasic();
 		if (browser.equals(Constant.CHROME_BROWSER)) {
 			ChromeOptions option = new ChromeOptions();
-            option.addArguments("--remote-allow-origins=*");
-            driver = new ChromeDriver(option);
-		} 
-		else if (browser.equals(Constant.FIREFOX_BROWSER)) {
-		driver = new FirefoxDriver();
+			option.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(option);
+		} else if (browser.equals(Constant.FIREFOX_BROWSER)) {
+			driver = new FirefoxDriver();
 		}
 		driver.get(prop.getProperty("BaseURL"));
 		driver.manage().window().maximize();

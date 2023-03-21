@@ -13,12 +13,14 @@ public class ManagePagesPageTestCases extends BaseClass {
 	LoginPage lp;
 	ManagePagesPage mppg;
 
-	@Test
+	@Test(groups = "Sanity Testing")
 	public void verifyToolTipValueOfStyleOptionInDescriptonOfNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		mppg.clickNewButton();
@@ -28,12 +30,14 @@ public class ManagePagesPageTestCases extends BaseClass {
 
 	}
 
-	@Test
+	@Test(groups = "Smoke Testing")
 	public void verifyToolTipValueOfVideoOptionInDescriptonOfNewOption() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		mppg.clickNewButton();
@@ -42,13 +46,15 @@ public class ManagePagesPageTestCases extends BaseClass {
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 
 	}
-	
-	@Test
+
+	@Test(groups = "Regression Testing")
 	public void verifyTheValueOfPagesAccordingToTheTitle() throws IOException {
 		lp = new LoginPage(driver);
 		mppg = new ManagePagesPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		mppg.enterManagePages();
 		String actualresult = mppg.getLocatorToFindValueOfPage();

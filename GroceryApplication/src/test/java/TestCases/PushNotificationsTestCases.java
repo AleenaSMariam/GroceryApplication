@@ -13,12 +13,14 @@ public class PushNotificationsTestCases extends BaseClass {
 	LoginPage lp;
 	PushNotificationsPage pnp;
 
-	@Test
+	@Test(groups = "Regression Testing")
 	public void verifyIfAlertMessagesAreShownWhenPushNotificationsAreSent() throws IOException {
 		lp = new LoginPage(driver);
 		pnp = new PushNotificationsPage(driver);
-		lp.enterUsername(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
-		lp.enterPassword(ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
+		lp.enterUsername(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 0));
+		lp.enterPassword(
+				ExcelRead.readStringData(prop.getProperty("LoginExcel"), prop.getProperty("LoginExcelSheet"), 1, 1));
 		lp.clickSignIn();
 		pnp.enterPushNotificationsPage();
 		pnp.typeTitleInPushNotifications(Constant.PUSH_NOTIFICATION_TITLE);
