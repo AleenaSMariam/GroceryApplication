@@ -59,6 +59,7 @@ public class AdminUsersTestCases extends BaseClass {
 		aup.clickCreateButton();
 		String expectedresult = aup.newUserCreatedMessageShown();
 		String actualresult = Constant.ALERTMESSAGEFORCREATINGUSER;
+		System.out.println(expectedresult);
 		Assert.assertEquals(actualresult, expectedresult, Constant.ASSERTIONMESSAGE);
 	}
 
