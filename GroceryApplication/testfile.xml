@@ -2,8 +2,7 @@
 <test name="ChromeTest">
 <parameter name="browser" value="Chrome"></parameter>
 <classes>
-<class name="TestCases.ManageProductPageTestCases">
-<include name="verifyIfAlertMessageIsShownAfterEnteringInvalidProductCodeIsSearched"/>
+<class name="TestCases.LoginPageTestCases">
 </class>
 </classes>
 </test>

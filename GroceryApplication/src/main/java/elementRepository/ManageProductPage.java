@@ -88,7 +88,7 @@ public class ManageProductPage {
 	}
 
 	public void clickSearchButton() {
-		searchButton.click();
+		ew.waitForElementToBeClickable(driver, searchButton);
 	}
 
 	public void enterProductCode(String code) {
